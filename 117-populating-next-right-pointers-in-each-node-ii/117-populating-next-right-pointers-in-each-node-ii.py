@@ -7,6 +7,7 @@ class Node:
         self.right = right
         self.next = next
 """
+
 class Solution:
     def connect(self, root: Optional['Node']) -> Optional['Node']:
         if root is None:
@@ -19,8 +20,6 @@ class Solution:
                 Node = stack.pop(0)
                 if i<size-1:
                     Node.next = stack[0]
-                # else:
-                #     Node.next = None
                 if Node.left:
                     stack.append(Node.left)
                 if Node.right:
