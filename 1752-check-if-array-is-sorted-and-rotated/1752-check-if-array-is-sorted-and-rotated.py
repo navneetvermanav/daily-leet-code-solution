@@ -1,7 +1,7 @@
 class Solution:
     def check(self, nums: List[int]) -> bool:
-        Sorted = sorted(nums)
+        S=sorted(nums)
         for start in range(len(nums)):
-            if nums[start: ] + nums[ :start] == Sorted:
+            if nums[start: ] + nums[ :start] == S:
                 return True
         return False 
