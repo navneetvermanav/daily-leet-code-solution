@@ -1,39 +1,35 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
-        # traverse the tree, the set pairs maintains the number of each element
-        # If you already have the same element in pairs, then remove it
-        # Else, add it to pairs
-
-        # In the leaf, if the set is empty, then its an even palindrome.
-        # In the leaf, if the set has 1 element , its an odd palindrome.
-        # In th leaf, if the set has > 1 elements, its not a palindrome.
         
-        def traverse(node, pairs):
-            if not node:
-                return 0
-            
-            if node.val in pairs:
-                pairs.remove(node.val)
-            else:
-                pairs.add(node.val)
-            
+        self.paths=0
+        pathdict=defaultdict(int)
+        def dfs(node):
             if not node.left and not node.right:
-                return 1 if len(pairs) <= 1 else 0
-            
-            # correct!!
-            left = traverse(node.left, set(pairs))
-            right = traverse(node.right, set(pairs))
-            
-            # wrong, becasue pairs will change after we traversed node.left or node.right!
-            # left = traverse(node.left, pairs)
-            # right = traverse(node.right, pairs)
-            
-            return left + right
+                pathdict[node.val]+=1
+                if self.couldPalindrome(pathdict):
+                    self.paths+=1
+                pathdict[node.val]-=1
+                return
+            pathdict[node.val]+=1
+            if node.left:
+                dfs(node.left)
+            if node.right:
+                dfs(node.right)
+            pathdict[node.val]-=1
+            if not pathdict[node.val]:
+                del pathdict[node.val]
+                
+        dfs(root)       
+        return self.paths
+   
+
+    def couldPalindrome(self,pathdict):
         
-        return traverse(root, set())
+        oddcount=0
+        for key in pathdict:
+            if pathdict[key]%2:
+                oddcount+=1
+                
+        if oddcount>1:
+            return False
+        return True
