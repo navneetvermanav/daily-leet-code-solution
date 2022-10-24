@@ -5,8 +5,6 @@ class Solution:
         d = {}
         for i, word in enumerate(arr):
             d[1<<i] = (sum(1<<(ord(w) - 97) for w in word), len(word))
-
-        (None)
         def dp(m):
             if m == 0: return (0, 0)
             prev = m & (m - 1)
