@@ -6,7 +6,7 @@ class Solution:
         for i, word in enumerate(arr):
             d[1<<i] = (sum(1<<(ord(w) - 97) for w in word), len(word))
 
-        @lru_cache(None)
+        (None)
         def dp(m):
             if m == 0: return (0, 0)
             prev = m & (m - 1)
