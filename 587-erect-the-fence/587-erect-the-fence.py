@@ -1,13 +1,10 @@
 class Solution:
-    @staticmethod
     def check_cross_product(a, b, o):
         ax = a[0] - o[0]
         ay = a[1] - o[1]
         bx = b[0] - o[0]
         by = b[1] - o[1]
         return ax*by - ay*bx
-    
-    @staticmethod
     def find_farthest_pt(pts, pt):
         far = None
         for val in pts:
