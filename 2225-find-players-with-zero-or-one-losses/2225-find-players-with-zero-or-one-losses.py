@@ -10,5 +10,5 @@ class Solution:
             if v == 0:
                 winners.append(k) # If player k has no loss ie v == 0
             if v == 1:
-                losers.append(k) # If player k has one loss ie v == 1
-        return [sorted(winners), sorted(losers)] # Problem asked to return sorted arrays.
+                losers.append(k)
+        return [sorted(winners), sorted(losers)]
