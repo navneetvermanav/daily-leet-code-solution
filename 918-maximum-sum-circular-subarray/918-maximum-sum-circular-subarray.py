@@ -1,7 +1,7 @@
 class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
         n = len(nums)
-        minHeap = [(0, -1)]  # (preSum, index)
+        minHeap = [(0, -1)]  
         preSumSoFar = 0
         ans = nums[0]
         for i in range(2*n):
